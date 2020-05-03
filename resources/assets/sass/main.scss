@@ -2,6 +2,20 @@
 @import "reset";
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Roboto', sans-serif;
-  background: yellow;
+  min-height: 100vh;
+  background: rgb(255, 172, 198);
+  background: linear-gradient(90deg, rgba(255, 172, 198, 1) 7%, rgba(182, 224, 245, 1) 48%, rgba(255, 172, 198, 1) 94%);
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1300px;
+  background: white;
+  min-height: 80vh;
+  border-radius: 15px;
+  ;
 }

@@ -17,5 +17,65 @@ body {
   background: white;
   min-height: 80vh;
   border-radius: 15px;
-  ;
+  display: grid;
+  grid-template-columns: 15% 65% 20%;
+
+  #left-menu {
+    border: 2px solid #e6e9ef;
+    border-radius: 15px;
+
+    .account-dropdown {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      padding: 15px;
+
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .fab {
+          font-size: 2rem;
+        }
+      }
+
+      .name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .fa-chevron-down {
+          font-size: 0.8rem;
+        }
+      }
+
+    }
+
+    .groups {
+      padding: 15px;
+
+      .group {
+        .title {
+          padding: 10px 0;
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+
+        ul {
+          li {
+            font-size: 0.8rem;
+            padding: 10px 0;
+            color: #97999c;
+          }
+        }
+      }
+    }
+  }
 }

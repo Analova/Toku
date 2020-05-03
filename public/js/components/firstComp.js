@@ -45,15 +45,7 @@ var Layout = function (_Component) {
   _createClass(Layout, [{
     key: "render",
     value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "home" },
-        _react2.default.createElement(
-          "h1",
-          null,
-          "This is the first comp"
-        )
-      );
+      return _react2.default.createElement("div", { className: "home" });
     }
   }]);
 

@@ -12,11 +12,7 @@ class Layout extends Component {
     console.log("swag");
   };
   render() {
-    return (
-      <div className="home">
-        <h1>This is the first comp</h1>
-      </div>
-    );
+    return <div className="home"></div>;
   }
 }
 

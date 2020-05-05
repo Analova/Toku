@@ -10,7 +10,7 @@
     "production": "./node_modules/.bin/webpack -p",
     "watch": "gulp",
     "watch-server": "adonis serve --dev",
-    "server": "adonis serve",
+    "server": "adonis server",
     "sass": "gulp styles",
     "js": "gulp webpack"
   },

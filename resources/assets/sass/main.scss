@@ -1,19 +1,23 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700");
 @import "reset";
+@import "variables";
 
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   min-height: 100vh;
   background: rgb(255, 172, 198);
-  background: linear-gradient(90deg, rgba(255, 172, 198, 1) 7%, rgba(182, 224, 245, 1) 48%, rgba(255, 172, 198, 1) 94%);
+  background: linear-gradient(90deg,
+      rgba(255, 172, 198, 1) 7%,
+      rgba(182, 224, 245, 1) 48%,
+      rgba(255, 172, 198, 1) 94%);
 }
 
 .app-container {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1400px;
   background: white;
   min-height: 80vh;
   border-radius: 15px;
@@ -54,7 +58,6 @@ body {
           font-size: 0.8rem;
         }
       }
-
     }
 
     .groups {
@@ -78,4 +81,69 @@ body {
       }
     }
   }
+
+  #content-area {
+    overflow: hidden;
+
+    .search-header {
+      position: relative;
+      padding: 10px;
+      -webkit-box-shadow: 0px 0px 15px -3px rgba(191, 189, 191, 1);
+      -moz-box-shadow: 0px 0px 15px -3px rgba(191, 189, 191, 1);
+      box-shadow: 0px 0px 15px -3px rgba(191, 189, 191, 1);
+
+      .search-box {
+        width: 600px;
+        margin: 0 auto;
+
+        input[type="text"] {
+          width: 100%;
+          background-color: #F3F3F3;
+          border-radius: 3px;
+          font-size: 1.2rem;
+          border: none;
+          padding: 5px 15px;
+        }
+      }
+
+      .icon-section {
+        position: absolute;
+        top: 15px;
+        right: 0;
+        font-size: 1.2rem;
+
+
+
+        &>div {
+          display: inline-block;
+          padding: 0 2px;
+          color: #797979;
+          position: relative
+        }
+
+
+        .noti-number {
+          display: none;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          padding: 2px 5px;
+          border-radius: 5px;
+          border: 1px solid white;
+          background: $red;
+          color: white;
+          font-size: 0.6rem;
+
+          &.active {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
 }

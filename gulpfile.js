@@ -9,8 +9,8 @@ const reload = browserSync.reload;
 var exec = require("child_process").exec;
 
 gulp.task("default", ["styles", "webpack", "browser-sync"], () => {
-  gulp.watch("./assets/sass/**/*", ["styles"]);
-  gulp.watch("./assets/js/**/*", ["webpack"]);
+  gulp.watch("./resources/assets/sass/**/*", ["styles"]);
+  gulp.watch("./resources//assets/js/**/*", ["webpack"]);
   gulp
     .watch([
       "./public/**/*",

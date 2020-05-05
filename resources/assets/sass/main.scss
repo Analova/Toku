@@ -2,6 +2,10 @@
 @import "reset";
 @import "variables";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   align-items: center;
@@ -82,10 +86,11 @@ body {
     }
   }
 
-  #content-area {
+  #content-container {
     overflow: hidden;
 
     .search-header {
+
       position: relative;
       padding: 10px;
       -webkit-box-shadow: 0px 0px 15px -3px rgba(191, 189, 191, 1);
@@ -111,6 +116,7 @@ body {
         top: 15px;
         right: 0;
         font-size: 1.2rem;
+        padding-right: 15px;
 
 
 
@@ -125,11 +131,11 @@ body {
         .noti-number {
           display: none;
           position: absolute;
-          top: -5px;
-          right: -5px;
-          padding: 2px 5px;
+          top: -7px;
+          right: -7px;
+          padding: 2px 3px;
           border-radius: 5px;
-          border: 1px solid white;
+          border: 3px solid white;
           background: $red;
           color: white;
           font-size: 0.6rem;
@@ -139,11 +145,53 @@ body {
           }
         }
       }
+
+
+
     }
+
+    .compose-section {
+      width: 600px;
+      margin: 0 auto;
+      padding: 35px 0;
+      position: relative;
+
+      textarea {
+        width: 100%;
+        height: 75px;
+        background: $textfield;
+        border: none;
+        border-radius: 4px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+      }
+
+      .user-img {
+        position: absolute;
+        top: 20px;
+        left: -15px;
+        background:
+          url("https://tinyfac.es/data/avatars/8B510E03-96BA-43F0-A85A-F38BB3005AF1-500w.jpeg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        border: 5px solid white;
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+
+  #messenger {
+    background: #0178FF;
+
+
   }
 }
 
 input:focus,
 textarea:focus {
   outline: none;
+
 }

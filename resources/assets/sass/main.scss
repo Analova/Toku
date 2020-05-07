@@ -215,6 +215,80 @@ body {
       }
 
     }
+
+    #updates {
+      .update-container {
+        max-width: 630px;
+        width: 100%;
+        margin: 0 auto;
+
+        .author-info {
+          display: flex;
+          padding: 0 15px;
+
+
+
+          .user-img {
+            display: inline-block;
+            background: url("https://tinyfac.es/data/avatars/8B510E03-96BA-43F0-A85A-F38BB3005AF1-500w.jpeg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            height: 40px;
+            width: 40px;
+          }
+
+          .info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            color: $ptext;
+
+            a {
+              color: $htext;
+              text-decoration: none;
+              font-weight: 700;
+              margin: 0 10px;
+            }
+          }
+        }
+
+        .media {
+          position: relative;
+
+
+          .image {
+            z-index: 2;
+            position: relative;
+            margin: 25px 0 50px;
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            -webkit-box-shadow: -2px 20px 22px -5px rgba(84, 79, 84, 1);
+            -moz-box-shadow: -2px 20px 22px -5px rgba(84, 79, 84, 1);
+            box-shadow: -2px 20px 22px -5px rgba(84, 79, 84, 1);
+          }
+        }
+
+        .padding-container {
+          padding: 0 15px;
+        }
+
+        .grey-container {
+          z-index: 1;
+          position: relative;
+          top: -50px;
+          padding: 50px 0;
+          background: $baclgroundContent;
+          -webkit-box-shadow: -2px 20px 22px -5px rgba(84, 79, 84, 1);
+          -moz-box-shadow: -2px 20px 22px -5px rgba(84, 79, 84, 1);
+          box-shadow: -2px 20px 22px -5px rgba(84, 79, 84, 1);
+        }
+      }
+    }
   }
 
   #messenger {

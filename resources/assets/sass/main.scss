@@ -89,7 +89,7 @@ body {
 
   #content-container {
     overflow: hidden;
-    height: 900px;
+    height: 800px;
 
     .content-area {
       box-sizing: content-box;
@@ -405,7 +405,49 @@ body {
   }
 
   #messenger {
+    overflow: hidden;
     background: #0178ff;
+
+    .messenger-header {
+
+      display: flex;
+      height: 53.33px;
+      background: $lightsideBlue;
+      font-size: 1.2;
+      padding: 10px 0;
+      color: white;
+      box-shadow: 0 0px 15px -3px #1b1b1b;
+
+      .messenger-icon {
+        height: 33.33px;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 15px;
+
+      }
+
+      .title {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-transform: capitalize;
+        font-weight: 400;
+        font-size: 1.1;
+
+      }
+
+      .dots-icon {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 15px;
+      }
+    }
   }
 }
 

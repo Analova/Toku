@@ -448,6 +448,79 @@ body {
         padding-right: 15px;
       }
     }
+
+    .users {
+      // padding: 20px 15px;
+      height: 700px;
+      overflow: hidden;
+
+      .users-container {
+        overflow: auto;
+        box-sizing: content-box;
+        padding: 0 15px;
+        height: 100%;
+        width: 100%;
+      }
+
+      .user {
+        display: flex;
+        padding: 7px 0;
+
+        &.active {
+          .user-img {
+            opacity: 1;
+          }
+
+          .username {
+            font-weight: 700;
+            color: white;
+          }
+
+          .conversation {
+            display: flex
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .user-img {
+            opacity: 1;
+          }
+
+          .username {
+            font-weight: 700;
+            color: white
+          }
+        }
+
+        .user-img {
+          opacity: 0.8;
+          transition: all .5s ease-in-out;
+          width: 20%;
+        }
+
+        .username {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          width: 60%;
+          transition: all .5s ease-in-out;
+          padding-left: 15px;
+          color: #99ccff;
+          font-weight: 300;
+          font-size: .9rem;
+        }
+
+        .conversation {
+          width: 20%;
+          display: none;
+          justify-content: flex-end;
+          align-items: center;
+          color: white;
+        }
+      }
+    }
   }
 }
 

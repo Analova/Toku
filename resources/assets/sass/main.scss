@@ -407,6 +407,7 @@ body {
   #messenger {
     overflow: hidden;
     background: #0178ff;
+    height: 800px;
 
     .messenger-header {
 
@@ -451,7 +452,7 @@ body {
 
     .users {
       // padding: 20px 15px;
-      height: 700px;
+      height: 668.67px;
       overflow: hidden;
 
       .users-container {
@@ -520,9 +521,34 @@ body {
           color: white;
         }
       }
+
+
+    }
+
+    .search {
+      background: $searchBG;
+      padding: 20px 15px;
+
+      input[type="text"] {
+        background: $searchInputBG;
+        border: none;
+        width: 100%;
+        border-radius: 25px;
+        font-size: 1rem;
+        padding: 10px;
+        color: white;
+
+        &::placeholder {
+          color: #78b3ef;
+          opacity: 1
+        }
+
+      }
     }
   }
 }
+
+
 
 input:focus,
 textarea:focus {

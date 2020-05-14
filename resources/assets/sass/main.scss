@@ -4,9 +4,8 @@
 @import "variables";
 @import "pages/welcome.scss";
 @import "pages/home.scss";
-@import "auth/register";
-@import "auth/login";
-@import "auth/forgotPassword";
+@import "auth/auth";
+
 
 * {
   box-sizing: border-box;
@@ -72,6 +71,7 @@ label {
 
 .default-form {
   button {
+    cursor: pointer;
     background: #32AEFF;
     width: 100%;
     min-width: 200px;

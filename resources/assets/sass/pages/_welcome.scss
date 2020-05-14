@@ -46,7 +46,7 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 10px;
-        transition: all .5s ease-in-out;
+        transition: all .3s ease-in-out;
         cursor: pointer;
 
         &:hover {
@@ -68,6 +68,8 @@
 
       .email-btn {
         border: 1px solid black;
+        color: $htext;
+        text-decoration: none;
       }
 
       hr {

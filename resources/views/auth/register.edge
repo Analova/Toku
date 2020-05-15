@@ -18,16 +18,17 @@ auth-page
    <div class="auth-form">
      <h1>Toku</h1>
    <form class="default-form " action="/register" method="POST">
+    {{csrfField()}}
    <div class="form-group">
      <label for="email">Email</label>
-     <input class="text" type="email" name="email">
+     <input  type="text" name="email" class="text">
    </div>
    <div class="form-group">
      <label for="password">Password</label>
-     <input class="text" type="password" name="email">
+     <input class="text" type="password" name="password">
    </div>
    <div class="form-group">
-     <label for="confirm_password">Confirm Email: </label>
+     <label for="confirm_password">Confirm Password: </label>
      <input class="text" type="password" name="confirm_password">
    </div>
     <div class="form-group">

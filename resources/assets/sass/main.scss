@@ -69,7 +69,25 @@ label {
 
 }
 
+.error-box {
+  display: none;
+  background: $red;
+  color: white;
+  padding: 15px;
+  margin-bottom: 1rem;
+
+  &.active {
+    display: block;
+  }
+}
+
 .default-form {
+  .form-group {
+    &>.error {
+      border: 1px solid red
+    }
+  }
+
   button {
     cursor: pointer;
     background: #32AEFF;
@@ -81,6 +99,24 @@ label {
     border-radius: 4px;
     padding: 10px 0;
   }
+}
+
+.notification {
+  display: none;
+
+  &.welcome {
+    background: #a7f442;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 20px;
+  }
+
+  &.active {
+    display: block;
+  }
+
+
 }
 
 

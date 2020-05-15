@@ -21,12 +21,11 @@ class AuthController {
     if (request.input("password") == request.input("confirm_password")) {
       // Check if it fails validation
       if (validation.fails()) {
-        // session.withErrors(validation.messages()).flashExcept(["password"]);
+        session.withErrors(validation.messages()).flashExcept(["password"]);
 
-        // return response.redirect("back");
-
-        return `Error there is a problem with the email `;
+        return response.redirect("back");
       } else {
+        //save user to database
         try {
           let newUser = await User.create({
             email: request.input("email"),
@@ -34,13 +33,23 @@ class AuthController {
           });
         } catch (error) {
           console.log(error);
-          return "problems with database";
-        }
-      }
+          session.withErrors([
+            { field: "database", message: "problem with database, try later" },
+          ]);
 
-      return `Validation passed`;
+          return response.redirect("back");
+        }
+        session.flash({ notification: "Welcome to Toku" });
+        return response.redirect("/home");
+      }
     } else {
-      return `passwords dont match`;
+      //show errors if password do not match
+      session.withErrors([
+        { field: "password", message: "need to confirm password" },
+        { field: "confirm_password", message: "need to confirm password" },
+      ]);
+
+      return response.redirect("back");
     }
   }
 

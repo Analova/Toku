@@ -7,6 +7,19 @@
     @section("current-class")
    home-page
   @endsection
+
+    @section("notifications")
+    <div class="notification welcome
+    @if(flashMessage("notification"))
+      active
+    @endif
+    ">
+     @if(flashMessage("notification"))
+        {{flashMessage("notification")}}
+    @endif
+  
+     </div>
+  @endsection
  
  
  @section("content-area")

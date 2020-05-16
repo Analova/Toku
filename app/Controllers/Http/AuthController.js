@@ -59,6 +59,15 @@ class AuthController {
   async forgotPassword({ response, request, view }) {
     return view.render("auth/forgotPassword");
   }
+  async logout({ response, request, view, auth }) {
+    try {
+      await auth.logout();
+      return response.redirect("/");
+    } catch (error) {
+      console.log(error);
+      return "Error can not log out";
+    }
+  }
 }
 
 module.exports = AuthController;

@@ -56,6 +56,29 @@ class AuthController {
   async login({ response, request, view }) {
     return view.render("auth/login");
   }
+
+  async loginUser({ response, request, view, auth }) {
+    // capture the data from the form
+    const postData = request.post();
+
+    // find the user in the database by their Email
+    const user = await User.query().where("email", postData.email).first();
+    if (user) {
+      const passwordVerified = await Hash.verify(
+        postData.password,
+        user.password
+      );
+
+      if (passwordVerified) {
+        await auth.login(user);
+        return response.redirect("/home");
+      } else {
+        // password incorrect
+      }
+    } else {
+      //can not find user with that email
+    }
+  }
   async forgotPassword({ response, request, view }) {
     return view.render("auth/forgotPassword");
   }

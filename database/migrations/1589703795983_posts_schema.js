@@ -3,26 +3,26 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use("Schema");
 
-class TokensSchema extends Schema {
+class PostsSchema extends Schema {
   up() {
-    this.create("tokens", (table) => {
+    this.create("posts", (table) => {
       table.increments();
+      table.text("content");
+      table.string("type").notNullable();
+      table.string("image_url", 600).nullable();
       table
         .integer("user_id")
         .unsigned()
         .notNullable()
         .references("id")
         .inTable("users");
-      table.string("token", 255).notNullable().unique().index();
-      table.string("type", 80).notNullable();
-      table.boolean("is_revoked").defaultTo(false);
       table.timestamps();
     });
   }
 
   down() {
-    this.drop("tokens");
+    this.drop("posts");
   }
 }
 
-module.exports = TokensSchema;
+module.exports = PostsSchema;

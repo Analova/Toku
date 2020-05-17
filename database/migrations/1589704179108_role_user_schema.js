@@ -3,9 +3,9 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use("Schema");
 
-class TokensSchema extends Schema {
+class RoleUserSchema extends Schema {
   up() {
-    this.create("tokens", (table) => {
+    this.create("role_users", (table) => {
       table.increments();
       table
         .integer("user_id")
@@ -13,16 +13,19 @@ class TokensSchema extends Schema {
         .notNullable()
         .references("id")
         .inTable("users");
-      table.string("token", 255).notNullable().unique().index();
-      table.string("type", 80).notNullable();
-      table.boolean("is_revoked").defaultTo(false);
+      table
+        .integer("role_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("roles");
       table.timestamps();
     });
   }
 
   down() {
-    this.drop("tokens");
+    this.drop("role_users");
   }
 }
 
-module.exports = TokensSchema;
+module.exports = RoleUserSchema;

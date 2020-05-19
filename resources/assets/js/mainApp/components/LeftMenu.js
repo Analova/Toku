@@ -22,6 +22,12 @@ export default class LeftMenu extends Component {
           <div className="icon">
             <i className="fas fa-chevron-down" />
           </div>
+          <div className="dropdown ">
+            <nav>
+              <a href="/account">Account</a>
+              <a href="/logout">Logout</a>
+            </nav>
+          </div>
         </div>
         <div className="groups">
           <div className="group">

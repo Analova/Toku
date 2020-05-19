@@ -153,6 +153,24 @@ var LeftMenu = function (_Component) {
             "div",
             { className: "icon" },
             _react2.default.createElement("i", { className: "fas fa-chevron-down" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "dropdown " },
+            _react2.default.createElement(
+              "nav",
+              null,
+              _react2.default.createElement(
+                "a",
+                { href: "/account" },
+                "Account"
+              ),
+              _react2.default.createElement(
+                "a",
+                { href: "/logout" },
+                "Logout"
+              )
+            )
           )
         ),
         _react2.default.createElement(

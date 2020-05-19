@@ -40,7 +40,7 @@ class AuthController {
           return response.redirect("back");
         }
         session.flash({ notification: "Welcome to Toku" });
-        return response.redirect("/home");
+        return response.redirect("/");
       }
     } else {
       //show errors if password do not match
@@ -72,7 +72,7 @@ class AuthController {
       if (passwordVerified) {
         await auth.login(user);
         session.flash({ notification: "Welcome to Toku" });
-        return response.redirect("/home");
+        return response.redirect("/");
       } else {
         // password incorrect
         session.withErrors([

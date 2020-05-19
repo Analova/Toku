@@ -120,12 +120,12 @@ var LeftMenu = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (LeftMenu.__proto__ || Object.getPrototypeOf(LeftMenu)).call(this));
 
-    _this.clickedBtn = function () {
-      console.log("swag");
+    _this.clickedDropdown = function () {
+      _this.setState({ dropdown: !_this.state.dropdown });
     };
 
     _this.state = {
-      name: ""
+      dropdown: false
     };
     return _this;
   }
@@ -146,17 +146,17 @@ var LeftMenu = function (_Component) {
           ),
           _react2.default.createElement(
             "div",
-            { className: "name" },
+            { className: "name", onClick: this.clickedDropdown },
             "Snata Clause"
           ),
           _react2.default.createElement(
             "div",
-            { className: "icon" },
+            { className: "icon", onClick: this.clickedDropdown },
             _react2.default.createElement("i", { className: "fas fa-chevron-down" })
           ),
           _react2.default.createElement(
             "div",
-            { className: "dropdown " },
+            { className: "dropdown " + (this.state.dropdown ? "active" : "") },
             _react2.default.createElement(
               "nav",
               null,

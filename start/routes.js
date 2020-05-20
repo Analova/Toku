@@ -26,3 +26,6 @@ Route.get("/login", "AuthController.login");
 Route.post("/login", "AuthController.loginUser");
 Route.get("/forgot-password", "AuthController.forgotPassword");
 Route.get("/logout", "AuthController.logout");
+
+//api
+Route.get("/api/initialApp", "ApiController.initialApp");

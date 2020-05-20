@@ -9,7 +9,10 @@ export default class LoadingComp extends Component {
 
   render() {
     return (
-      <section id="loading-comp">
+      <section
+        id="loading-comp"
+        className={this.props.initialData === "loading" ? "active" : ""}
+      >
         <div className="loading-icon">
           <div className="loadingio-spinner-dual-ring-urzdhp50lym">
             <div className="ldio-50xsozkchu6">

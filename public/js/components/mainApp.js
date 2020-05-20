@@ -287,7 +287,10 @@ var LoadingComp = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         "section",
-        { id: "loading-comp" },
+        {
+          id: "loading-comp",
+          className: this.props.initialData === "loading" ? "active" : ""
+        },
         _react2.default.createElement(
           "div",
           { className: "loading-icon" },
@@ -1365,11 +1368,7 @@ var Layout = function (_Component) {
     };
 
     _this.state = {
-      name: "Bob",
-      initialData: {
-        first_name: "Bob",
-        last_name: "Doe"
-      }
+      name: "Bob"
     };
     return _this;
   }
@@ -1452,8 +1451,12 @@ var Layout = function (_Component) {
         _react2.default.createElement(
           "div",
           { className: "app-container home-page" },
-          _react2.default.createElement(_LoadingComp2.default, null),
-          _react2.default.createElement(_LeftMenu2.default, { initialData: this.state.initialData }),
+          _react2.default.createElement(_LoadingComp2.default, {
+            initialData: this.state.initialData === undefined ? "loading" : this.state.initialData
+          }),
+          _react2.default.createElement(_LeftMenu2.default, {
+            initialData: this.state.initialData === undefined ? "loading" : this.state.initialData
+          }),
           _react2.default.createElement(
             "section",
             { id: "content-container" },

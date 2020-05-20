@@ -3,10 +3,16 @@
   align-items: center;
   justify-content: center;
   position: absolute;
+  transform: translate3d(0, 100%, 0);
   height: 100%;
   width: 100%;
   background: $darksideBlue;
   z-index: 20;
+  transition: all, .5s ease-in-out .3s;
+
+  &.active {
+    transform: translate3d(0, 0, 0);
+  }
 
   .loading-icon {}
 

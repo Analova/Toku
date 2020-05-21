@@ -42,31 +42,29 @@ class Layout extends Component {
   };
   render() {
     return (
-      <div className="home">
-        <div className="app-container home-page">
-          <LoadingComp
-            initialData={
-              this.state.initialData === undefined
-                ? "loading"
-                : this.state.initialData
-            }
-          />
-          <LeftMenu
-            initialData={
-              this.state.initialData === undefined
-                ? "loading"
-                : this.state.initialData
-            }
-          />
-          <section id="content-container">
-            <SearchHeader />
-            <div className="content-area">
-              <ComposeSection />
-              <Post />
-            </div>
-          </section>
-          <Messenger />
-        </div>
+      <div className="app-container home-page">
+        <LoadingComp
+          initialData={
+            this.state.initialData === undefined
+              ? "loading"
+              : this.state.initialData
+          }
+        />
+        <LeftMenu
+          initialData={
+            this.state.initialData === undefined
+              ? "loading"
+              : this.state.initialData
+          }
+        />
+        <section id="content-container">
+          <SearchHeader />
+          <div className="content-area">
+            <ComposeSection />
+            <Post />
+          </div>
+        </section>
+        <Messenger />
       </div>
     );
   }

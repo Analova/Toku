@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
+
 export default class Post extends Component {
   constructor() {
     super();
@@ -8,9 +9,9 @@ export default class Post extends Component {
       name: "",
     };
   }
-  clickedBtn = () => {
-    console.log("swag");
-  };
+
+ 
+
   render() {
     return (
       <section id="posts">

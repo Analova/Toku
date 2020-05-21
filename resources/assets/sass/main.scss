@@ -24,6 +24,9 @@ body {
       rgba(255, 172, 198, 1) 94%);
 }
 
+#app {
+  width: 100%
+}
 
 
 .app-container {
@@ -37,7 +40,7 @@ body {
   border-radius: 15px;
   display: grid;
   grid-template-columns: 15% 60% 25%;
-
+  margin: 0 auto;
 
 
 }

@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 296:
+/***/ 297:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9,6 +9,10 @@ webpackJsonp([0],{
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _defineProperty2 = __webpack_require__(330);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _regenerator = __webpack_require__(191);
 
@@ -67,8 +71,8 @@ var ComposeSection = function (_Component) {
               _context.prev = 0;
               _context.next = 3;
               return _axios2.default.post("/api/post", {
-                content: "Hey I just went to starbucks",
-                user_id: 1,
+                content: _this.state.post_content,
+                user_id: _this.props.initialData.userInfo.id,
                 type: "text"
               });
 
@@ -93,6 +97,14 @@ var ComposeSection = function (_Component) {
       }, _callee, _this2, [[0, 7]]);
     }));
 
+    _this.handleChange = function (e) {
+      var name = e.target.name;
+      var value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+      _this.setState((0, _defineProperty3.default)({}, name, value), function () {
+        console.log(_this.state);
+      });
+    };
+
     _this.state = {
       name: ""
     };
@@ -105,7 +117,15 @@ var ComposeSection = function (_Component) {
       return _react2.default.createElement(
         "section",
         { className: "compose-section" },
-        _react2.default.createElement("textarea", { name: true, id: true, cols: 80, rows: 10, defaultValue: "" }),
+        _react2.default.createElement("textarea", {
+          name: "post_content",
+          id: true,
+          cols: 80,
+          rows: 10,
+          defaultValue: "",
+          value: this.state.post_content,
+          onChange: this.handleChange
+        }),
         _react2.default.createElement("div", { className: "user-img" }),
         _react2.default.createElement(
           "div",
@@ -136,7 +156,7 @@ exports.default = ComposeSection;
 
 /***/ }),
 
-/***/ 297:
+/***/ 298:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -193,83 +213,95 @@ var LeftMenu = function (_Component) {
   (0, _createClass3.default)(LeftMenu, [{
     key: "render",
     value: function render() {
-      return _react2.default.createElement(
-        "section",
-        { id: "left-menu" },
-        _react2.default.createElement(
+      if (this.props.initialData.userInfo === undefined) {
+        return _react2.default.createElement(
           "div",
-          { className: "account-dropdown" },
+          null,
+          "Loading"
+        );
+      } else {
+        var _props$initialData$us = this.props.initialData.userInfo,
+            first_name = _props$initialData$us.first_name,
+            last_name = _props$initialData$us.last_name;
+
+        return _react2.default.createElement(
+          "section",
+          { id: "left-menu" },
           _react2.default.createElement(
             "div",
-            { className: "logo" },
-            _react2.default.createElement("i", { className: "fab fa-typo3" })
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "name", onClick: this.clickedDropdown },
-            this.props.initialData.first_name + " " + this.props.initialData.last_name
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "icon", onClick: this.clickedDropdown },
-            _react2.default.createElement("i", { className: "fas fa-chevron-down" })
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "dropdown " + (this.state.dropdown ? "active" : "") },
-            _react2.default.createElement(
-              "nav",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "/account" },
-                "Account"
-              ),
-              _react2.default.createElement(
-                "a",
-                { href: "/logout" },
-                "Logout"
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "groups" },
-          _react2.default.createElement(
-            "div",
-            { className: "group" },
+            { className: "account-dropdown" },
             _react2.default.createElement(
               "div",
-              { className: "title" },
-              "Title"
+              { className: "logo" },
+              _react2.default.createElement("i", { className: "fab fa-typo3" })
             ),
             _react2.default.createElement(
-              "ul",
-              null,
+              "div",
+              { className: "name", onClick: this.clickedDropdown },
+              first_name + " " + last_name
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "icon", onClick: this.clickedDropdown },
+              _react2.default.createElement("i", { className: "fas fa-chevron-down" })
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "dropdown " + (this.state.dropdown ? "active" : "") },
               _react2.default.createElement(
-                "li",
+                "nav",
                 null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "/account" },
+                  "Account"
+                ),
                 _react2.default.createElement(
                   "a",
                   { href: "/logout" },
                   "Logout"
                 )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "groups" },
+            _react2.default.createElement(
+              "div",
+              { className: "group" },
+              _react2.default.createElement(
+                "div",
+                { className: "title" },
+                "Title"
               ),
               _react2.default.createElement(
-                "li",
+                "ul",
                 null,
-                "link"
-              ),
-              _react2.default.createElement(
-                "li",
-                null,
-                "link"
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  _react2.default.createElement(
+                    "a",
+                    { href: "/logout" },
+                    "Logout"
+                  )
+                ),
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  "link"
+                ),
+                _react2.default.createElement(
+                  "li",
+                  null,
+                  "link"
+                )
               )
             )
           )
-        )
-      );
+        );
+      }
     }
   }]);
   return LeftMenu;
@@ -279,7 +311,7 @@ exports.default = LeftMenu;
 
 /***/ }),
 
-/***/ 298:
+/***/ 299:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -369,7 +401,7 @@ exports.default = LoadingComp;
 
 /***/ }),
 
-/***/ 299:
+/***/ 300:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -965,7 +997,7 @@ exports.default = Messenger;
 
 /***/ }),
 
-/***/ 300:
+/***/ 301:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1009,6 +1041,107 @@ var Post = function (_Component) {
 
     var _this = (0, _possibleConstructorReturn3.default)(this, (Post.__proto__ || Object.getPrototypeOf(Post)).call(this));
 
+    _this.showLatestPost = function () {
+      if (_this.props.initialData.latestPosts != undefined) {
+        return _this.props.initialData.latestPosts.map(function (post) {
+          return _react2.default.createElement(
+            "div",
+            { className: "update-container" },
+            _react2.default.createElement(
+              "div",
+              { className: "author-info" },
+              _react2.default.createElement("a", { href: "#", className: "user-img" }),
+              _react2.default.createElement(
+                "div",
+                { className: "info" },
+                _react2.default.createElement(
+                  "a",
+                  { href: "#" },
+                  "James Doe"
+                ),
+                "shared a story",
+                _react2.default.createElement("a", { href: "#" })
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "media" },
+              _react2.default.createElement("div", {
+                className: "image",
+                style: {
+                  background: 'url("http://www.lovethispic.com/uploaded_images/158130-Be-Your-Own-Inspiration.jpg")'
+                }
+              })
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "padding-container" },
+              _react2.default.createElement(
+                "div",
+                { className: "grey-container" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "update-info" },
+                  _react2.default.createElement(
+                    "h3",
+                    null,
+                    "How to become a developer"
+                  ),
+                  _react2.default.createElement(
+                    "p",
+                    null,
+                    post.content
+                  )
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "update-stats" },
+                  _react2.default.createElement(
+                    "div",
+                    { className: "icon-section" },
+                    _react2.default.createElement(
+                      "div",
+                      { className: "like-circle" },
+                      _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "other-users" },
+                    "Sarah Brown and 23 others liked update"
+                  ),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "comments-stats" },
+                    "4 comments"
+                  )
+                ),
+                _react2.default.createElement(
+                  "div",
+                  { className: "compose-comment" },
+                  _react2.default.createElement("textarea", { name: true, id: true, cols: 80, rows: 10, defaultValue: "" }),
+                  _react2.default.createElement(
+                    "div",
+                    { className: "buttons" },
+                    _react2.default.createElement(
+                      "div",
+                      { className: "repost-btn" },
+                      _react2.default.createElement("i", { className: "fas fa-redo" })
+                    ),
+                    _react2.default.createElement(
+                      "div",
+                      { className: "like-btn" },
+                      _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
+                    )
+                  )
+                )
+              )
+            )
+          );
+        });
+      }
+    };
+
     _this.state = {
       name: ""
     };
@@ -1021,194 +1154,7 @@ var Post = function (_Component) {
       return _react2.default.createElement(
         "section",
         { id: "posts" },
-        _react2.default.createElement(
-          "div",
-          { className: "update-container" },
-          _react2.default.createElement(
-            "div",
-            { className: "author-info" },
-            _react2.default.createElement("a", { href: "#", className: "user-img" }),
-            _react2.default.createElement(
-              "div",
-              { className: "info" },
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "James Doe"
-              ),
-              "shared a story",
-              _react2.default.createElement("a", { href: "#" })
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "media" },
-            _react2.default.createElement("div", {
-              className: "image",
-              style: {
-                background: 'url("http://www.lovethispic.com/uploaded_images/158130-Be-Your-Own-Inspiration.jpg")'
-              }
-            })
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "padding-container" },
-            _react2.default.createElement(
-              "div",
-              { className: "grey-container" },
-              _react2.default.createElement(
-                "div",
-                { className: "update-info" },
-                _react2.default.createElement(
-                  "h3",
-                  null,
-                  "How to become a developer"
-                ),
-                _react2.default.createElement(
-                  "p",
-                  null,
-                  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-                )
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "update-stats" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "icon-section" },
-                  _react2.default.createElement(
-                    "div",
-                    { className: "like-circle" },
-                    _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
-                  )
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "other-users" },
-                  "Sarah Brown and 23 others liked update"
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "comments-stats" },
-                  "4 comments"
-                )
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "compose-comment" },
-                _react2.default.createElement("textarea", { name: true, id: true, cols: 80, rows: 10, defaultValue: "" }),
-                _react2.default.createElement(
-                  "div",
-                  { className: "buttons" },
-                  _react2.default.createElement(
-                    "div",
-                    { className: "repost-btn" },
-                    _react2.default.createElement("i", { className: "fas fa-redo" })
-                  ),
-                  _react2.default.createElement(
-                    "div",
-                    { className: "like-btn" },
-                    _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
-                  )
-                )
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "update-container" },
-          _react2.default.createElement(
-            "div",
-            { className: "author-info" },
-            _react2.default.createElement("a", { href: "#", className: "user-img" }),
-            _react2.default.createElement(
-              "div",
-              { className: "info" },
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "James Doe"
-              ),
-              "shared a story",
-              _react2.default.createElement("a", { href: "#" })
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "media" },
-            _react2.default.createElement("div", {
-              className: "image",
-              style: {
-                background: 'url("http://www.lovethispic.com/uploaded_images/158130-Be-Your-Own-Inspiration.jpg")'
-              }
-            })
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "padding-container" },
-            _react2.default.createElement(
-              "div",
-              { className: "grey-container" },
-              _react2.default.createElement(
-                "div",
-                { className: "update-info" },
-                _react2.default.createElement(
-                  "h3",
-                  null,
-                  "How to become a developer"
-                ),
-                _react2.default.createElement(
-                  "p",
-                  null,
-                  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-                )
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "update-stats" },
-                _react2.default.createElement(
-                  "div",
-                  { className: "icon-section" },
-                  _react2.default.createElement(
-                    "div",
-                    { className: "like-circle" },
-                    _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
-                  )
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "other-users" },
-                  "Sarah Brown and 23 others liked update"
-                ),
-                _react2.default.createElement(
-                  "div",
-                  { className: "comments-stats" },
-                  "4 comments"
-                )
-              ),
-              _react2.default.createElement(
-                "div",
-                { className: "compose-comment" },
-                _react2.default.createElement("textarea", { name: true, id: true, cols: 80, rows: 10, defaultValue: "" }),
-                _react2.default.createElement(
-                  "div",
-                  { className: "buttons" },
-                  _react2.default.createElement(
-                    "div",
-                    { className: "repost-btn" },
-                    _react2.default.createElement("i", { className: "fas fa-redo" })
-                  ),
-                  _react2.default.createElement(
-                    "div",
-                    { className: "like-btn" },
-                    _react2.default.createElement("i", { className: "fas fa-thumbs-up" })
-                  )
-                )
-              )
-            )
-          )
-        )
+        this.showLatestPost()
       );
     }
   }]);
@@ -1219,7 +1165,7 @@ exports.default = Post;
 
 /***/ }),
 
-/***/ 301:
+/***/ 302:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1328,7 +1274,7 @@ exports.default = SearchHeader;
 
 /***/ }),
 
-/***/ 322:
+/***/ 323:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1370,27 +1316,27 @@ var _axios = __webpack_require__(189);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _LeftMenu = __webpack_require__(297);
+var _LeftMenu = __webpack_require__(298);
 
 var _LeftMenu2 = _interopRequireDefault(_LeftMenu);
 
-var _Messenger = __webpack_require__(299);
+var _Messenger = __webpack_require__(300);
 
 var _Messenger2 = _interopRequireDefault(_Messenger);
 
-var _SearchHeader = __webpack_require__(301);
+var _SearchHeader = __webpack_require__(302);
 
 var _SearchHeader2 = _interopRequireDefault(_SearchHeader);
 
-var _Post = __webpack_require__(300);
+var _Post = __webpack_require__(301);
 
 var _Post2 = _interopRequireDefault(_Post);
 
-var _LoadingComp = __webpack_require__(298);
+var _LoadingComp = __webpack_require__(299);
 
 var _LoadingComp2 = _interopRequireDefault(_LoadingComp);
 
-var _ComposeSection = __webpack_require__(296);
+var _ComposeSection = __webpack_require__(297);
 
 var _ComposeSection2 = _interopRequireDefault(_ComposeSection);
 
@@ -1502,8 +1448,12 @@ var Layout = function (_Component) {
           _react2.default.createElement(
             "div",
             { className: "content-area" },
-            _react2.default.createElement(_ComposeSection2.default, null),
-            _react2.default.createElement(_Post2.default, null)
+            _react2.default.createElement(_ComposeSection2.default, {
+              initialData: this.state.initialData === undefined ? "loading" : this.state.initialData
+            }),
+            _react2.default.createElement(_Post2.default, {
+              initialData: this.state.initialData === undefined ? "loading" : this.state.initialData
+            })
           )
         ),
         _react2.default.createElement(_Messenger2.default, null)
@@ -1519,4 +1469,4 @@ _reactDom2.default.render(_react2.default.createElement(Layout, null), app);
 
 /***/ })
 
-},[322]);
+},[323]);

@@ -13,8 +13,8 @@ export default class ComposeSection extends Component {
   submitForm = async () => {
     try {
       const post = await axios.post("/api/post", {
-        content: "Hey I just went to starbucks",
-        user_id: 1,
+        content: this.state.post_content,
+        user_id: this.props.initialData.userInfo.id,
         type: "text",
       });
       console.log(post);
@@ -23,10 +23,32 @@ export default class ComposeSection extends Component {
     }
   };
 
+  handleChange = (e) => {
+    const name = e.target.name;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  };
+
   render() {
     return (
       <section className="compose-section">
-        <textarea name id cols={80} rows={10} defaultValue={""} />
+        <textarea
+          name="post_content"
+          id
+          cols={80}
+          rows={10}
+          defaultValue={""}
+          value={this.state.post_content}
+          onChange={this.handleChange}
+        />
         <div className="user-img" />
         <div className="buttons">
           <div className="button photo-btn">

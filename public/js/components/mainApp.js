@@ -1050,16 +1050,29 @@ var Post = function (_Component) {
             _react2.default.createElement(
               "div",
               { className: "author-info" },
-              _react2.default.createElement("a", { href: "#", className: "user-img" }),
+              _react2.default.createElement("a", {
+                href: "#",
+                className: "user-img",
+                style: {
+                  backgroundImage: "url('" + post.profile_img + "')"
+                }
+              }),
               _react2.default.createElement(
                 "div",
                 { className: "info" },
                 _react2.default.createElement(
                   "a",
-                  { href: "#" },
-                  "James Doe"
+                  { href: "/profile" },
+                  post.first_name + " " + post.last_name
                 ),
-                "shared a story",
+                "shared a",
+                " ",
+                _react2.default.createElement(
+                  "a",
+                  { href: "" },
+                  " ",
+                  post.type === "text" ? "story" : "image"
+                ),
                 _react2.default.createElement("a", { href: "#" })
               )
             ),
@@ -1067,7 +1080,8 @@ var Post = function (_Component) {
               "div",
               { className: "media" },
               _react2.default.createElement("div", {
-                className: "image",
+                //className="image"
+                className: "" + (post.type === "text" ? "story" : "image"),
                 style: {
                   background: 'url("http://www.lovethispic.com/uploaded_images/158130-Be-Your-Own-Inspiration.jpg")'
                 }

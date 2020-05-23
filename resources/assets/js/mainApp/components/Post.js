@@ -15,16 +15,24 @@ export default class Post extends Component {
         return (
           <div className="update-container">
             <div className="author-info">
-              <a href="#" className="user-img" />
+              <a
+                href="#"
+                className="user-img"
+                style={{
+                  backgroundImage: `url('${post.profile_img}')`,
+                }}
+              />
               <div className="info">
-                <a href="#">James Doe</a>
-                shared a story
+                <a href="/profile">{`${post.first_name} ${post.last_name}`}</a>
+                shared a{" "}
+                <a href=""> {post.type === "text" ? "story" : "image"}</a>
                 <a href="#" />
               </div>
             </div>
             <div className="media">
               <div
-                className="image"
+                //className="image"
+                className={`${post.type === "text" ? "story" : "image"}`}
                 style={{
                   background:
                     'url("http://www.lovethispic.com/uploaded_images/158130-Be-Your-Own-Inspiration.jpg")',

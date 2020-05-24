@@ -11,7 +11,9 @@ export default class Post extends Component {
 
   showLatestPost = () => {
     if (this.props.initialData.latestPosts != undefined) {
-      return this.props.initialData.latestPosts.map((post) => {
+      return this.props.initialData.latestPosts.map((item) => {
+        let post = item.posts;
+        let user = item.users;
         return (
           <div className="update-container">
             <div className="author-info">
@@ -19,11 +21,11 @@ export default class Post extends Component {
                 href="#"
                 className="user-img"
                 style={{
-                  backgroundImage: `url('${post.profile_img}')`,
+                  backgroundImage: `url('${user.profile_img}')`,
                 }}
               />
               <div className="info">
-                <a href="/profile">{`${post.first_name} ${post.last_name}`}</a>
+                <a href="/profile">{`${user.first_name} ${user.last_name}`}</a>
                 shared a{" "}
                 <a href=""> {post.type === "text" ? "story" : "image"}</a>
                 <a href="#" />

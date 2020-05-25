@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import Home from "./components/Home";
 import LeftMenu from "./components/LeftMenu";
 import Messenger from "./components/Messenger";
 import SearchHeader from "./components/SearchHeader";
@@ -8,6 +9,7 @@ import Post from "./components/Post";
 import LoadingComp from "./components/LoadingComp";
 import ComposeSection from "./components/ComposeSection";
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 class Layout extends Component {
   constructor() {
     super();
@@ -42,42 +44,58 @@ class Layout extends Component {
   };
   render() {
     return (
-      <div className="app-container home-page">
-        <LoadingComp
-          initialData={
-            this.state.initialData === undefined
-              ? "loading"
-              : this.state.initialData
-          }
-        />
-        <LeftMenu
-          initialData={
-            this.state.initialData === undefined
-              ? "loading"
-              : this.state.initialData
-          }
-        />
-        <section id="content-container">
-          <SearchHeader />
-          <div className="content-area">
-            <ComposeSection
-              initialData={
-                this.state.initialData === undefined
-                  ? "loading"
-                  : this.state.initialData
-              }
+      <Router>
+        <div className="app-container home-page">
+          <LoadingComp
+            initialData={
+              this.state.initialData === undefined
+                ? "loading"
+                : this.state.initialData
+            }
+          />
+          <LeftMenu
+            initialData={
+              this.state.initialData === undefined
+                ? "loading"
+                : this.state.initialData
+            }
+          />
+          <section id="content-container">
+            <SearchHeader />
+            <Route
+              exact
+              path="/"
+              component={(props) => (
+                <Home
+                  routerProps={props}
+                  initialData={
+                    this.state.initialData == undefined
+                      ? "loading"
+                      : this.state.initialData
+                  }
+                />
+              )}
             />
-            <Post
-              initialData={
-                this.state.initialData === undefined
-                  ? "loading"
-                  : this.state.initialData
-              }
-            />
-          </div>
-        </section>
-        <Messenger />
-      </div>
+            <div className="content-area">
+              <ComposeSection
+                initialData={
+                  this.state.initialData === undefined
+                    ? "loading"
+                    : this.state.initialData
+                }
+              />
+              <Post
+                initialData={
+                  this.state.initialData === undefined
+                    ? "loading"
+                    : this.state.initialData
+                }
+              />
+            </div>
+          </section>
+          <Messenger />
+        </div>
+      </Router>
     );
   }
 }

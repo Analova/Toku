@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import Home from "./components/Home";
+import Profile from "./components/Profile";
 import LeftMenu from "./components/LeftMenu";
 import Messenger from "./components/Messenger";
 import SearchHeader from "./components/SearchHeader";
@@ -67,6 +68,20 @@ class Layout extends Component {
               path="/"
               component={(props) => (
                 <Home
+                  routerProps={props}
+                  initialData={
+                    this.state.initialData == undefined
+                      ? "loading"
+                      : this.state.initialData
+                  }
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/profile/:id"
+              component={(props) => (
+                <Profile
                   routerProps={props}
                   initialData={
                     this.state.initialData == undefined

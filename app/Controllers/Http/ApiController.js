@@ -9,7 +9,7 @@ class ApiController {
         .innerJoin("users", "users.id", "posts.user_id")
         .options({ nestTables: true })
         .fetch();
-      console.log(latestPosts.toJSON());
+      //console.log(latestPosts.toJSON());
       return {
         userInfo: auth.user,
         latestPosts,

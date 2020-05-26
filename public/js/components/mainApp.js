@@ -14,11 +14,11 @@ var _defineProperty2 = __webpack_require__(338);
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _regenerator = __webpack_require__(105);
+var _regenerator = __webpack_require__(106);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _asyncToGenerator2 = __webpack_require__(104);
+var _asyncToGenerator2 = __webpack_require__(105);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -46,7 +46,7 @@ var _reactDom = __webpack_require__(32);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(134);
+var _axios = __webpack_require__(104);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -350,11 +350,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = __webpack_require__(105);
+var _regenerator = __webpack_require__(106);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _asyncToGenerator2 = __webpack_require__(104);
+var _asyncToGenerator2 = __webpack_require__(105);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -382,7 +382,7 @@ var _reactDom = __webpack_require__(32);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(134);
+var _axios = __webpack_require__(104);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1319,11 +1319,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _regenerator = __webpack_require__(105);
+var _regenerator = __webpack_require__(106);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _asyncToGenerator2 = __webpack_require__(104);
+var _asyncToGenerator2 = __webpack_require__(105);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -1355,6 +1355,10 @@ var _Post = __webpack_require__(136);
 
 var _Post2 = _interopRequireDefault(_Post);
 
+var _axios = __webpack_require__(104);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 var _ComposeSection = __webpack_require__(135);
 
 var _ComposeSection2 = _interopRequireDefault(_ComposeSection);
@@ -1379,60 +1383,91 @@ var Profile = function (_Component) {
 
   (0, _createClass3.default)(Profile, [{
     key: "componentWillMount",
-    value: function () {
-      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-        var _this2 = this;
+    value: function componentWillMount() {
+      var _props$routeProps = this.props.routeProps,
+          match = _props$routeProps.match,
+          location = _props$routeProps.location,
+          history = _props$routeProps.history;
 
-        return _regenerator2.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.setState({
-                  initialData: this.props.initialData
-                }, function () {
-                  console.log(_this2.props);
-                });
+      var self = this;
 
-              case 1:
-              case "end":
-                return _context.stop();
+      var getUser = function () {
+        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+          var userProfile;
+          return _regenerator2.default.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _context.next = 2;
+                  return _axios2.default.get("/api/user/" + match.params.id);
+
+                case 2:
+                  userProfile = _context.sent;
+
+                  try {
+                    self.setState({
+                      initialData: self.props.initialData,
+                      userProfile: userProfile.data[0]
+                    }, function () {
+                      console.log(self.state);
+                    });
+                  } catch (error) {
+                    console.log(error);
+                  }
+
+                case 4:
+                case "end":
+                  return _context.stop();
+              }
             }
-          }
-        }, _callee, this);
-      }));
+          }, _callee, this);
+        }));
 
-      function componentWillMount() {
-        return _ref.apply(this, arguments);
-      }
-
-      return componentWillMount;
-    }()
+        return function getUser() {
+          return _ref.apply(this, arguments);
+        };
+      }();
+      getUser();
+    }
   }, {
     key: "render",
     value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "content-area profile-page" },
-        _react2.default.createElement(
+      if (this.state.userProfile !== undefined) {
+        var _state$userProfile = this.state.userProfile,
+            first_name = _state$userProfile.first_name,
+            last_name = _state$userProfile.last_name,
+            profile_img = _state$userProfile.profile_img;
+
+        return _react2.default.createElement(
           "div",
-          { className: "user-img", src: "" },
-          _react2.default.createElement("img", { src: "", alt: "" })
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "info" },
+          { className: "content-area profile-page" },
           _react2.default.createElement(
-            "h1",
-            null,
-            "Jane Doe"
+            "div",
+            { className: "user-img", src: "" },
+            _react2.default.createElement("img", { src: "" + profile_img, alt: "" })
           ),
           _react2.default.createElement(
             "div",
-            { className: "follow-btn" },
-            "Follow"
+            { className: "info" },
+            _react2.default.createElement(
+              "h1",
+              null,
+              first_name + " " + last_name
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "follow-btn" },
+              "Follow"
+            )
           )
-        )
-      );
+        );
+      } else {
+        return _react2.default.createElement(
+          "div",
+          { className: "content-area profile-page" },
+          "Loading"
+        );
+      }
     }
   }]);
   return Profile;
@@ -1557,11 +1592,11 @@ exports.default = SearchHeader;
 "use strict";
 
 
-var _regenerator = __webpack_require__(105);
+var _regenerator = __webpack_require__(106);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _asyncToGenerator2 = __webpack_require__(104);
+var _asyncToGenerator2 = __webpack_require__(105);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -1589,7 +1624,7 @@ var _reactDom = __webpack_require__(32);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(134);
+var _axios = __webpack_require__(104);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -1742,7 +1777,7 @@ var Layout = function (_Component) {
               path: "/",
               component: function component(props) {
                 return _react2.default.createElement(_Home2.default, {
-                  routerProps: props,
+                  routeProps: props,
                   initialData: _this2.state.initialData == undefined ? "loading" : _this2.state.initialData
                 });
               }
@@ -1752,7 +1787,7 @@ var Layout = function (_Component) {
               path: "/profile/:id",
               component: function component(props) {
                 return _react2.default.createElement(_Profile2.default, {
-                  routerProps: props,
+                  routeProps: props,
                   initialData: _this2.state.initialData == undefined ? "loading" : _this2.state.initialData
                 });
               }

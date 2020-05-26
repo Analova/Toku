@@ -68,7 +68,7 @@ class Layout extends Component {
               path="/"
               component={(props) => (
                 <Home
-                  routerProps={props}
+                  routeProps={props}
                   initialData={
                     this.state.initialData == undefined
                       ? "loading"
@@ -82,7 +82,7 @@ class Layout extends Component {
               path="/profile/:id"
               component={(props) => (
                 <Profile
-                  routerProps={props}
+                  routeProps={props}
                   initialData={
                     this.state.initialData == undefined
                       ? "loading"

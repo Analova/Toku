@@ -4,7 +4,9 @@ const User = use("App/Models/User");
 class UserController {
   async profile({ auth, request, resposne }) {
     try {
-      const user = await User.query().where("id", "=", 1).fetch();
+      const user = await User.query()
+        .where("id", "=", request.params.id)
+        .fetch();
       console.log(user.toJSON());
       return user.toJSON();
     } catch (error) {

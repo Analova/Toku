@@ -26,30 +26,38 @@ class UserController {
     }
   }
   async follow({ auth, request, resposne }) {
-    try {
-      const followedUser = await Database.table("followers").insert({
-        user_id: 1,
-        follow_id: request.params.id,
-      });
-      console.log(followedUser);
-      return "saved successfully";
-    } catch (error) {
-      console.log(error);
+    if (auth.user) {
+      try {
+        const followedUser = await Database.table("followers").insert({
+          user_id: auth.user.id,
+          follow_id: request.params.id,
+        });
+        console.log(followedUser);
+        return "saved successfully";
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      return "You are not logged in!";
     }
   }
   async unfollow({ auth, request, resposne }) {
-    try {
-      const followedUser = await Database.table("followers")
-        .insert({
-          user_id: 1,
-          follow_id: request.params.id,
-        })
-        .delete();
+    if (auth.user) {
+      try {
+        const followedUser = await Database.table("followers")
+          .insert({
+            user_id: auth.user.id,
+            follow_id: request.params.id,
+          })
+          .delete();
 
-      console.log(followedUser);
-      return "Deleted successfully";
-    } catch (error) {
-      console.log(error);
+        console.log(followedUser);
+        return "Deleted successfully";
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      return "You are not logged in!";
     }
   }
 }

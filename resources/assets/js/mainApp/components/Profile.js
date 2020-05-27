@@ -19,12 +19,13 @@ export default class Profile extends Component {
 
     const getUser = async function () {
       const userProfile = await axios.get(`/api/user/${match.params.id}`);
+      console.log();
       try {
         self.setState(
           {
             initialData: self.props.initialData,
-            userProfile: userProfile.data[0],
-            following: false,
+            userProfile: userProfile.data.user[0],
+            following: userProfile.data.following,
           },
           () => {
             console.log(self.state);
@@ -37,23 +38,35 @@ export default class Profile extends Component {
     getUser();
   }
 
-  followUser = () => {
+  followUser = async () => {
     const { match, location, history } = this.props.routeProps;
     const self = this;
 
-    const follow = async function () {
-      const userProfile = await axios.get(
-        `/api/user/${match.params.id}/follow`
-      );
+    if (this.state.following) {
       try {
+        const userProfile = await axios.get(
+          `/api/user/${match.params.id}/unfollow`
+        );
         self.setState({
           following: !self.state.following,
         });
+        console.log(userProfile.data);
       } catch (error) {
         console.log(error);
       }
-    };
-    follow();
+    } else {
+      try {
+        const userProfile = await axios.get(
+          `/api/user/${match.params.id}/follow`
+        );
+        self.setState({
+          following: !self.state.following,
+        });
+        console.log(userProfile.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   render() {

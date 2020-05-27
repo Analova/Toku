@@ -1371,53 +1371,79 @@ var Profile = function (_Component) {
   (0, _inherits3.default)(Profile, _Component);
 
   function Profile() {
+    var _this2 = this;
+
     (0, _classCallCheck3.default)(this, Profile);
 
     var _this = (0, _possibleConstructorReturn3.default)(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this));
 
-    _this.followUser = function () {
-      var _this$props$routeProp = _this.props.routeProps,
-          match = _this$props$routeProp.match,
-          location = _this$props$routeProp.location,
-          history = _this$props$routeProp.history;
+    _this.followUser = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+      var _this$props$routeProp, match, location, history, self, userProfile, _userProfile;
 
-      var self = _this;
+      return _regenerator2.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this$props$routeProp = _this.props.routeProps, match = _this$props$routeProp.match, location = _this$props$routeProp.location, history = _this$props$routeProp.history;
+              self = _this;
 
-      var follow = function () {
-        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-          var userProfile;
-          return _regenerator2.default.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _context.next = 2;
-                  return _axios2.default.get("/api/user/" + match.params.id + "/follow");
-
-                case 2:
-                  userProfile = _context.sent;
-
-                  try {
-                    self.setState({
-                      following: !self.state.following
-                    });
-                  } catch (error) {
-                    console.log(error);
-                  }
-
-                case 4:
-                case "end":
-                  return _context.stop();
+              if (!_this.state.following) {
+                _context.next = 16;
+                break;
               }
-            }
-          }, _callee, this);
-        }));
 
-        return function follow() {
-          return _ref.apply(this, arguments);
-        };
-      }();
-      follow();
-    };
+              _context.prev = 3;
+              _context.next = 6;
+              return _axios2.default.get("/api/user/" + match.params.id + "/unfollow");
+
+            case 6:
+              userProfile = _context.sent;
+
+              self.setState({
+                following: !self.state.following
+              });
+              console.log(userProfile.data);
+              _context.next = 14;
+              break;
+
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](3);
+
+              console.log(_context.t0);
+
+            case 14:
+              _context.next = 27;
+              break;
+
+            case 16:
+              _context.prev = 16;
+              _context.next = 19;
+              return _axios2.default.get("/api/user/" + match.params.id + "/follow");
+
+            case 19:
+              _userProfile = _context.sent;
+
+              self.setState({
+                following: !self.state.following
+              });
+              console.log(_userProfile.data);
+              _context.next = 27;
+              break;
+
+            case 24:
+              _context.prev = 24;
+              _context.t1 = _context["catch"](16);
+
+              console.log(_context.t1);
+
+            case 27:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, _this2, [[3, 11], [16, 24]]);
+    }));
 
     _this.state = {
       name: "Bob"
@@ -1448,11 +1474,12 @@ var Profile = function (_Component) {
                 case 2:
                   userProfile = _context2.sent;
 
+                  console.log();
                   try {
                     self.setState({
                       initialData: self.props.initialData,
-                      userProfile: userProfile.data[0],
-                      following: false
+                      userProfile: userProfile.data.user[0],
+                      following: userProfile.data.following
                     }, function () {
                       console.log(self.state);
                     });
@@ -1460,7 +1487,7 @@ var Profile = function (_Component) {
                     console.log(error);
                   }
 
-                case 4:
+                case 5:
                 case "end":
                   return _context2.stop();
               }

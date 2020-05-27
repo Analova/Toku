@@ -24,6 +24,7 @@ export default class Profile extends Component {
           {
             initialData: self.props.initialData,
             userProfile: userProfile.data[0],
+            following: false,
           },
           () => {
             console.log(self.state);
@@ -36,6 +37,25 @@ export default class Profile extends Component {
     getUser();
   }
 
+  followUser = () => {
+    const { match, location, history } = this.props.routeProps;
+    const self = this;
+
+    const follow = async function () {
+      const userProfile = await axios.get(
+        `/api/user/${match.params.id}/follow`
+      );
+      try {
+        self.setState({
+          following: !self.state.following,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    follow();
+  };
+
   render() {
     if (this.state.userProfile !== undefined) {
       const { first_name, last_name, profile_img } = this.state.userProfile;
@@ -46,7 +66,9 @@ export default class Profile extends Component {
           </div>
           <div className="info">
             <h1>{`${first_name} ${last_name}`}</h1>
-            <div className="follow-btn">Follow</div>
+            <div className="follow-btn" onClick={this.followUser}>
+              {this.state.following ? "Unfollow" : "Follow"}
+            </div>
           </div>
         </div>
       );

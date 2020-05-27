@@ -1375,6 +1375,50 @@ var Profile = function (_Component) {
 
     var _this = (0, _possibleConstructorReturn3.default)(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this));
 
+    _this.followUser = function () {
+      var _this$props$routeProp = _this.props.routeProps,
+          match = _this$props$routeProp.match,
+          location = _this$props$routeProp.location,
+          history = _this$props$routeProp.history;
+
+      var self = _this;
+
+      var follow = function () {
+        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+          var userProfile;
+          return _regenerator2.default.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _context.next = 2;
+                  return _axios2.default.get("/api/user/" + match.params.id + "/follow");
+
+                case 2:
+                  userProfile = _context.sent;
+
+                  try {
+                    self.setState({
+                      following: !self.state.following
+                    });
+                  } catch (error) {
+                    console.log(error);
+                  }
+
+                case 4:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        return function follow() {
+          return _ref.apply(this, arguments);
+        };
+      }();
+      follow();
+    };
+
     _this.state = {
       name: "Bob"
     };
@@ -1392,22 +1436,23 @@ var Profile = function (_Component) {
       var self = this;
 
       var getUser = function () {
-        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
           var userProfile;
-          return _regenerator2.default.wrap(function _callee$(_context) {
+          return _regenerator2.default.wrap(function _callee2$(_context2) {
             while (1) {
-              switch (_context.prev = _context.next) {
+              switch (_context2.prev = _context2.next) {
                 case 0:
-                  _context.next = 2;
+                  _context2.next = 2;
                   return _axios2.default.get("/api/user/" + match.params.id);
 
                 case 2:
-                  userProfile = _context.sent;
+                  userProfile = _context2.sent;
 
                   try {
                     self.setState({
                       initialData: self.props.initialData,
-                      userProfile: userProfile.data[0]
+                      userProfile: userProfile.data[0],
+                      following: false
                     }, function () {
                       console.log(self.state);
                     });
@@ -1417,14 +1462,14 @@ var Profile = function (_Component) {
 
                 case 4:
                 case "end":
-                  return _context.stop();
+                  return _context2.stop();
               }
             }
-          }, _callee, this);
+          }, _callee2, this);
         }));
 
         return function getUser() {
-          return _ref.apply(this, arguments);
+          return _ref2.apply(this, arguments);
         };
       }();
       getUser();
@@ -1456,8 +1501,8 @@ var Profile = function (_Component) {
             ),
             _react2.default.createElement(
               "div",
-              { className: "follow-btn" },
-              "Follow"
+              { className: "follow-btn", onClick: this.followUser },
+              this.state.following ? "Unfollow" : "Follow"
             )
           )
         );

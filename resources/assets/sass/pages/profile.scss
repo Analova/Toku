@@ -3,10 +3,14 @@
   grid-template-columns: 1fr 3fr;
 
   .user-img {
-    background: black;
+    margin: 10px;
 
 
-    img {}
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
   }
 
   .info {
